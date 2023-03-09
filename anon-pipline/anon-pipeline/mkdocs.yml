@@ -1,0 +1,7 @@
+site_name: Documentation
+site_url: https://plymouth-neuroimaging.github.io/documentation/
+nav:
+  - Home: index.md
+  - Anonymisation Pipeline:
+  - About: about.md
+theme: readthedocs
