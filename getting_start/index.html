@@ -102,7 +102,7 @@
 <ul>
 <li>clone the repository of anonymisation pipeline, for example:</li>
 </ul>
-<pre><code>git clone https://github.com/plymouth-neuroimaging/anon-pipeline-set.git
+<pre><code>git clone git@github.com:plymouth-neuroimaging/anon-pipeline-set.git
 </code></pre>
 <ul>
 <li>run the setup script </li>
@@ -110,24 +110,24 @@
 <pre><code>./setup.sh
 </code></pre>
 <ul>
-<li>install python packages in requirements.txt. It recommended to use a virtual environment, for example:</li>
+<li>install python packages in requirements.txt. It's recommended to use a virtual environment, for example:</li>
 </ul>
 <pre><code>python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 </code></pre>
 <ul>
-<li>a copy of file config.py should have been created. Update the <code>SALT</code> variable in the file to desired value. (see <a href="../features/#deterministic-renaming-of-folder-names">features</a> for detail about salt).
-If the file is not created automatically, it can be copied manually from <code>templates/config_template.py</code> to the root folder (<code>anon-pipeline-set</code>).</li>
+<li>a copy of file config.py should have been created in the root folder (<code>anon-pipeline-set</code>). Update the <code>SALT</code> variable in the file to desired value. (see <a href="../features/#deterministic-renaming-of-folder-names">features</a> for details about salt).
+If the <code>config.py</code>file is not created automatically, it can be copied manually from <code>templates/config_template.py</code>.</li>
 </ul>
 <h1 id="run">Run</h1>
 <h2 id="quick-run-with-example-data">Quick Run with example data</h2>
-<p>Try the following code for a quick run with our example data:</p>
+<p>Try the following code for a quick run with an example dataset:</p>
 <pre><code>./anon_pipeline.py example_input/ -p my_results
 </code></pre>
 <p>Here, <code>my_results</code> will be created containing the anonymised files.</p>
 <h2 id="run-with-your-own-data">Run with your own data</h2>
-<p>To anonymise you own data, you can crate a folder with the following structure</p>
+<p>To anonymise you own data, you can create dataset in following structure</p>
 <pre><code>&lt;input_folder&gt;/
     &lt;accession number 1&gt;/
         &lt;DICOM file 1&gt;
@@ -142,14 +142,14 @@ If the file is not created automatically, it can be copied manually from <code>t
 </code></pre>
 <p><strong>Please note</strong> that the input and output folder don't have to be saved in the root folder.</p>
 <h2 id="continuous-mode-and-restart-mode">Continuous mode and restart mode</h2>
-<p>In restart mode, the program assume there are no processed files and would raise an error if it found any. This mode is the default.</p>
-<p>In continuous mode, if there are processed files in output directory, the program will skip them and continue to process the rest. </p>
+<p>In restart mode, the program assume there are no processed files (and folders) and would raise an error if it found any. This mode is the default.</p>
+<p>In continuous mode, if there are processed files in output folder, the program will skip them and continue to process the rest. </p>
 <p>To use continuous mode, add option <code>-c</code> in command, for example:</p>
 <pre><code>./anon_pipeline.py &lt;path/to/input_folder&gt; -p &lt;path/to/output_folder&gt; -c
 </code></pre>
-<p><strong>Please note</strong>: the program assume that accession number is used to name the sub-directory (the folder containing the DICOM files), if this is not the case the program will fail to detect processed sub-directories and process them.</p>
+<p><strong>Please note</strong>: the program assume that accession number is used as name of sub-folder (the folder containing the DICOM files), if this is not the case the program will fail to detect processed sub-directories and process them.</p>
 <h2 id="exit-in-error">Exit in error</h2>
-<p>The program is default to continue processing, if a unknown error is encountered when processing a sub-directory.
+<p>The program is default to continue processing, if an unknown error is encountered when processing a sub-folder.
 If this option is on, the program will stop processing. Use <code>-e</code> option to enable this option, for example:</p>
 <pre><code>./anon_pipeline.py &lt;path/to/input_folder&gt; -p &lt;path/to/output_folder&gt; -e
 </code></pre>

@@ -92,7 +92,7 @@
         &lt;DICOM file 2&gt;    
 
 </code></pre>
-<p>The anonymisation rename the subfolder and DICOM files.</p>
+<p>The anonymisation rename the subfolder and DICOM files in output. </p>
 <pre><code>&lt;output_folder&gt;/
     &lt;pseudo folder name 1&gt;/
         001.dcm
@@ -102,12 +102,12 @@
         002.dcm  
 
 </code></pre>
-<p>Rename subfolder containing a particular study:
+<p>It renames subfolder containing a particular study:
 - Patient ID: 10 char hex
 - Accession number: 12 char hex
 An adjustable salt is used to ensure additional anonymisation.</p>
-<p><strong>Please note:</strong> It's recommended to use accession number as subfolder name so that the program can efficiently trace which of them has been processed.</p>
 <p>All DICOM files are sequentially renamed within each subdirectory</p>
+<p><strong>Please note:</strong> It's recommended to use accession number as subfolder name so that the program can efficiently trace which of them has been processed.</p>
               
             </div>
           </div><footer>
