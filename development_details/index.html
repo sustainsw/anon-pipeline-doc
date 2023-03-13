@@ -82,7 +82,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="developer-installation">Developer installation</h1>
-<p>After the installation of anonymisation pipeline, install additional Linux libararies for testing. </p>
+<p>After the installation of anonymisation pipeline, install additional Linux libraries for testing. </p>
 <pre><code>./dev-tools/setup-dev.sh
 </code></pre>
 <p>Install additional python packages for testing</p>
@@ -91,7 +91,7 @@
 <h1 id="logs">Logs</h1>
 <p>logs and records of an anonymisation process are saved in folder <code>log/</code>.</p>
 <h2 id="eventslog">events.log</h2>
-<p>This file logs all the relavent information, warning and errors in an anonymisation process. Check this file for details about running of anonymise pipeline.</p>
+<p>This file logs all the relevant information, warning and errors in an anonymisation process. Check this file for details about running of anonymise pipeline.</p>
 <h2 id="mirc-ctplog">mirc-ctp.log</h2>
 <p>This file logs all the outputs from mirc-ctp tool. Check this file for details about running of mirc-ctp tool.</p>
 <h2 id="prog_recorderdb">prog_recorder.db</h2>
@@ -109,7 +109,7 @@
 <h3 id="id_generatorpy">id_generator.py</h3>
 <p>The module generate pseudo id for accession number and patient numbers.</p>
 <h3 id="ocdrpy">ocdr.py</h3>
-<p>The module is for text dectection and optical character recognition. Function <code>text_detection_and_recognition</code> detect text in given image using EAST model of OpenCV and recognise characters on the image using Tesseract.</p>
+<p>The module is for text detection and optical character recognition. Function <code>text_detection_and_recognition</code> detect text in given image using EAST model of OpenCV and recognize characters on the image using Tesseract.</p>
 <h3 id="phi_text_examinerpy">phi_text_examiner.py</h3>
 <p>The module check if a given piece of text contain public health information (PHI) in a DICOM file, by comparing the tags with a series of tags of the DICOM (eg: patient name). 
 - See function <code>check_phi_in_text</code>
@@ -148,7 +148,7 @@ Please note that each folder can contain multiple process status, eg: a folder c
 <p>The table record information about each file. 
 - file: file name
 - folder: the subdirectory containing the file
-- status: status of the file; see ?? for more details.</p>
+- status: status of the file; see <code>FILE_STATUS</code> in <code>config.py</code> for more details.</p>
 <h3 id="file_status_lookup">file_status_lookup</h3>
 <p>A look up table for the status in files.
 - status: status name
@@ -162,7 +162,7 @@ Please note that each folder can contain multiple process status, eg: a folder c
 <p>The table record any public health information (PHI) found a image
 - file: file name where the PHI found
 - folder: name of the folder containing the file
-- text_id: id for the PHI text (multiple PHI text cuold be found on an image)
+- text_id: id for the PHI text (multiple PHI text could be found on an image)
 - phi_text: the original text found</p>
               
             </div>
