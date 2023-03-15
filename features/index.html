@@ -51,6 +51,12 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Features</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#deterministic-renaming-of-folder-names">Deterministic renaming of folder names</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#public-health-information-phi-searching-in-anonymised-dicom">Public health information (PHI) searching in anonymised DICOM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#recording-anonymisation-process">Recording anonymisation process</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -81,7 +87,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="deterministic-renaming-of-folder-names">Deterministic renaming of folder names</h1>
+                <h1 id="features">Features</h1>
+<h2 id="deterministic-renaming-of-folder-names">Deterministic renaming of folder names</h2>
 <p>Recall the structure of input folder</p>
 <pre><code>&lt;input_folder&gt;/
     &lt;accession number 1&gt;/
@@ -105,9 +112,17 @@
 <p>It renames subfolder containing a particular study:
 - Patient ID: 10 char hex
 - Accession number: 12 char hex
-An adjustable salt is used to ensure additional anonymisation.</p>
+An adjustable salt is used to ensure additional anonymisation, configured in <code>SALT</code> in <code>config.py</code>. 
+See module <a href="../development_details/#id_generatorpy">id_generatorpy</a>.</p>
 <p>All DICOM files are sequentially renamed within each subdirectory</p>
 <p><strong>Please note:</strong> It's recommended to use accession number as subfolder name so that the program can efficiently trace which of them has been processed.</p>
+<h2 id="public-health-information-phi-searching-in-anonymised-dicom">Public health information (PHI) searching in anonymised DICOM</h2>
+<p>The program search for PHI in pixel (image) data and in text of tag values in DICOM file. See <a href="../development_details/#anon_phi_examiner">anon_phi_examiner</a>.</p>
+<p>The feature depends on two modules:
+- <code>ocdr</code>: text detection and optical character recognition. See <a href="../development_details/#ocdr">ocdr</a>.
+- <code>phi_text_examiner</code>: checking if a given piece of text contain public health information (PHI) in a DICOM file, by referring to a series of tags. See <a href="../development_details/#phi_text_examiner">phi_text_examiner</a>.</p>
+<h2 id="recording-anonymisation-process">Recording anonymisation process</h2>
+<p>The program trace the status of every DICOM file and its directory in anonymisation process, and record them in a sqlite database. See <a href="../development_details/#database">database</a></p>
               
             </div>
           </div><footer>

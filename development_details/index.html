@@ -113,6 +113,7 @@
 <h3 id="ocdrpy">ocdr.py</h3>
 <p>The module is for text detection and optical character recognition. 
 - Function <code>text_detection_and_recognition()</code> detect text in given image using EAST model of OpenCV and recognize characters on the image using Tesseract.</p>
+<p>Search results are saved in <a href="./#phi_on_image">phi_on_image</a> table.</p>
 <h3 id="phi_text_examinerpy">phi_text_examiner.py</h3>
 <p>The module check if a given piece of text contain public health information (PHI) in a DICOM file, by referring to a series of tags (eg: patient name). 
 - Run function <code>check_phi_in_text()</code> for this process
@@ -123,7 +124,9 @@
 <h1 id="test">Test</h1>
 <p>Tests are in folder <code>test</code>. <code>pytest</code> should be used to run these tests, whose configuration file is in <code>pytest.ini</code>. See docstring for details of each test.</p>
 <h1 id="database">database</h1>
-<p>This is an sqlite database tracing the status of every DICOM file and its directory in anonymisation process. Following tables are contained in the database.</p>
+<p>This is an sqlite database tracing the status of every DICOM file and its directory in anonymisation process. </p>
+<p>Location of the database is configured in <code>RECORDER_DB_NAME</code> in <code>config.py</code>.</p>
+<p>Following tables are contained in the database. </p>
 <h3 id="folders">folders</h3>
 <p>Record the executive status of subdirectories that containing DICOM files, with the following columns:
 - name: name of the subdirectory
