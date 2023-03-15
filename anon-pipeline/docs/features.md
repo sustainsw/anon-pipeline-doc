@@ -13,7 +13,7 @@ Recall the structure of input folder
         <DICOM file 2>    
 
 ```
-The anonymisation rename the subfolder and DICOM files.
+The anonymisation rename the subfolder and DICOM files in output. 
 
 ```
 <output_folder>/
@@ -25,13 +25,15 @@ The anonymisation rename the subfolder and DICOM files.
         002.dcm  
 
 ```
-Rename subfolder containing a particular study:
+It renames subfolder containing a particular study:
 - Patient ID: 10 char hex
 - Accession number: 12 char hex
 An adjustable salt is used to ensure additional anonymisation.
 
-**Please note:** It's recommanded to use accession number as subfolder name so that the program can efficiently trace which of them has been processed.
-
 
 All DICOM files are sequentially renamed within each subdirectory
+
+**Please note:** It's recommended to use accession number as subfolder name so that the program can efficiently trace which of them has been processed.
+
+
 

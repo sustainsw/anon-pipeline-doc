@@ -47,11 +47,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="anonymisation_pipeline/">Anonymisation Pipeline</a>
+                <li class="toctree-l1"><a class="reference internal" href="getting_start/">Getting start</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="" href="about.md">About</a>
+                <li class="toctree-l1"><a class="reference internal" href="features/">Features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="development_details/">Development details</a>
                 </li>
               </ul>
       </div>
@@ -77,12 +81,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="documentations">Documentations</h1>
+                <h1 id="introduction">Introduction</h1>
+<p>The anonymiser pipeline is program anonymising DICOM files based on <a href="https://mircwiki.rsna.org/index.php?title=MIRC_CTP">RSNA Clinical Trials Processor</a>. It has following features:</p>
+<ul>
+<li>Deterministic (but anonymous) renaming of a folder of DICOM images (scans contained within sub-folders).</li>
+<li>Easy installation of the Mirc-Ctp tool using Docker.</li>
+<li>Record, monitor and summarization of anonymisation process, for both DICOM files and folders.</li>
+<li>Configuration and control on running of anonymisation, such as selecting folders to process, problem handlings etc.</li>
+<li>Additional search for public health information (PHI) on image using text detection and optical character recognition (OCR) models.</li>
+<li>The pipeline is tested using in-house and public DICOM data, to ensure the pipeline not leaking PHI in anonymised DICOM file.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="anonymisation_pipeline/" class="btn btn-neutral float-right" title="Anonymisation Pipeline">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="getting_start/" class="btn btn-neutral float-right" title="Getting start">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -106,7 +119,7 @@
     
     
     
-      <span><a href="anonymisation_pipeline/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="getting_start/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -125,5 +138,5 @@
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-03-09 16:33:38.941082+00:00
+Build Date UTC : 2023-03-13 15:22:12.266620+00:00
 -->

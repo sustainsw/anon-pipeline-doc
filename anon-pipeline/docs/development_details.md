@@ -1,32 +1,18 @@
 
-# Developer installation
-
-After the installation of anonymisation pipeline, install additional Linux libararies for testing. 
-```
-./dev-tools/setup-dev.sh
-```
-
-Install additional python packages for testing
-```
-pip install -r /dev-tools/requirements-dev.txt
-```
-
-
-
 
 # Logs
 logs and records of an anonymisation process are saved in folder `log/`.
 
 
 ## events.log
-This file logs all the relavent information, warning and errors in an anonymisation process. Check this file for details about running of anonymise pipeline.
+This file logs all the relevant information, warning and errors in an anonymisation process. Check this file for details about running of anonymise pipeline.
 
 ## mirc-ctp.log
 This file logs all the outputs from mirc-ctp tool. Check this file for details about running of mirc-ctp tool.
 
 
 ## prog_recorder.db
-This is an sqlite database tracing the status of every DICOM file and its directory in anonymisation process. See [database](development_details.md#database) for more details about the tables in the database.
+This is an sqlite database tracing the status of every DICOM file and its folder in anonymisation process. See [database](development_details.md#database) for more details about the tables in the database.
 
 
 
@@ -34,13 +20,16 @@ This is an sqlite database tracing the status of every DICOM file and its direct
 The program is consist of following modules/scripts. 
 
 ### anon_pipeline.py
-The `AnonPipeline` class in the module run the complete anonymisation process. Member function `anonymise` can be used for anonymisation.
+The module run the complete anonymisation process. 
+- The member function `anonymise()` in `AnonPipeline` class is for the starting the process.
 
 ### anon_recorder.py
-The module records status of files and sub-directory in anonymisation process. The information is stored into a splite database whose default path is `log/prog_recorder.db`.
+The module records status of files and sub-directory in anonymisation process. The information is stored into a sqlite database whose default path is `log/prog_recorder.db`.
 
 ### anon_phi_examiner.py
-The module
+The module search for public health information leaked on image and tag text of anonymised DICOM. 
+ - Member function `search_phi_in_batch()` in class `PhiOCDR` is for searching image.
+ - Function `get_phi_in_anon_dcm()` is for searching tag text.
 
 ### anon_summary.py
 The module performs anonymisation summary as in [anonymisation summary](getting_start.md#anonymisation-summary).
@@ -49,27 +38,29 @@ The module performs anonymisation summary as in [anonymisation summary](getting_
 The module generate pseudo id for accession number and patient numbers.
 
 ### ocdr.py
-The module is for text dectection and optical character recognition. Function `text_detection_and_recognition` detect text in given image using EAST model of OpenCV and recognise characters on the image using Tesseract.
+The module is for text detection and optical character recognition. 
+- Function `text_detection_and_recognition()` detect text in given image using EAST model of OpenCV and recognize characters on the image using Tesseract.
 
 ### phi_text_examiner.py
-The module check if a given piece of text contain public health information (PHI) in a DICOM file, by comparing the tags with a series of tags of the DICOM (eg: patient name). 
-- See function `check_phi_in_text`
-- The tags for reference are configured in `PHI_TAGS_CHECK_LIST` variable in config.py.
-- The tags are classified into different types where different methods for searching PHI are used accordingly.
+The module check if a given piece of text contain public health information (PHI) in a DICOM file, by referring to a series of tags (eg: patient name). 
+- Run function `check_phi_in_text()` for this process
+- The tags for reference can be configured in `PHI_TAGS_CHECK_LIST` variable in `config.py`.
+    - The tags are classified into different types by which different methods for searching PHI are used accordingly.
 
-### conig.py
+### config.py
 The script contains all the configurations for all above modules. It would be copied from `template/config_template.py` when the program is setup in the first time.
 
 
 
 # Test
-Tests are in folder `test`. `Pytest` should be used to run these tests, whose configuration file is in `pytest.ini`. See docstring for details of each test.
+Tests are in folder `test`. `pytest` should be used to run these tests, whose configuration file is in `pytest.ini`. See docstring for details of each test.
 
 
 # database
 This is an sqlite database tracing the status of every DICOM file and its directory in anonymisation process. Following tables are contained in the database.
+
 ### folders
-Record the status of subdirectories that containing DICOM files, with the following columns.
+Record the executive status of subdirectories that containing DICOM files, with the following columns:
 - name: name of the subdirectory
 - status: status of process, including
     - unchecked: not been checked by the program
@@ -80,8 +71,8 @@ Record the status of subdirectories that containing DICOM files, with the follow
 ### folder_process_status
 Record the process status of subdirectories that containing DICOM files, with the following columns.
 - name: name of the subdirectory
-- process: process status (eg: empty folder, some files corrupted). see `FOLDER_STATUS` in `config.py` for more details of the categories.
-Please note that each folder can contain multiple process status, eg: a folder can have corrupted files and files with PHI on image.
+- process: process status (eg: empty folder, partially corrupted). see `FOLDER_STATUS` in `config.py` for more details of the categories.
+Please note that each folder can contain multiple process status, eg: a folder can have both corrupted files and files with PHI on image.
 
 
 ### folder_process_status_lookup
@@ -96,10 +87,10 @@ A look up table for the process status in folder_process_status. They are config
  - rank: this is used to determine the priorities in reports.
 
 ### files
-The table record information about each file. 
+The table record status about each file. 
 - file: file name
 - folder: the subdirectory containing the file
-- status: status of the file; see ?? for more details.
+- status: status of the file; see `FILE_STATUS` in `config.py` for more details.
 
 
 ### file_status_lookup
@@ -115,10 +106,10 @@ A look up between filename and new filename
 - new_name: new file name
 
 ### phi_on_image
-The table record any public health information (PHI) found a image
+The table record any public health information (PHI) found in a image
 - file: file name where the PHI found
 - folder: name of the folder containing the file
-- text_id: id for the PHI text (multiple PHI text cuold be found on an image)
+- text_id: id for the PHI text (as multiple PHI text could be found on an image)
 - phi_text: the original text found
 
 
