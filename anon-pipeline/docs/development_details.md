@@ -41,6 +41,8 @@ The module generate pseudo id for accession number and patient numbers.
 The module is for text detection and optical character recognition. 
 - Function `text_detection_and_recognition()` detect text in given image using EAST model of OpenCV and recognize characters on the image using Tesseract.
 
+Search results are saved in [phi_on_image](development_details.md#phi_on_image) table.
+
 ### phi_text_examiner.py
 The module check if a given piece of text contain public health information (PHI) in a DICOM file, by referring to a series of tags (eg: patient name). 
 - Run function `check_phi_in_text()` for this process
@@ -57,8 +59,11 @@ Tests are in folder `test`. `pytest` should be used to run these tests, whose co
 
 
 # database
-This is an sqlite database tracing the status of every DICOM file and its directory in anonymisation process. Following tables are contained in the database.
+This is an sqlite database tracing the status of every DICOM file and its directory in anonymisation process. 
 
+Location of the database is configured in `RECORDER_DB_NAME` in `config.py`.
+
+Following tables are contained in the database. 
 ### folders
 Record the executive status of subdirectories that containing DICOM files, with the following columns:
 - name: name of the subdirectory
